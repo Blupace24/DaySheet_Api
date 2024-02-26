@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
-import paymentsRoute from "./routes/payment.js";
+import daysheetRoute from "./routes/daysheet.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -29,7 +29,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
-app.use("/api/payments", paymentsRoute);
+app.use("/api", daysheetRoute);
 
 
 app.use((err, req, res, next) => {
