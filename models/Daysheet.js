@@ -69,7 +69,14 @@ const DaysheetSchema = new mongoose.Schema(
   ubereatTotal:{type:Number},
   onlineTotal:{type:Number},
   onlineOrders:{type:Number},
-  totalSales:{type:Number}
+  totalSales:{type:Number},
+  wastages:[{
+    itemmaterial:{type:String},
+    item:{type:String},
+    quantity:{type:String},
+    reason:{type:String},
+  }],
+  otherinfo:{type:String}
   },
   { timestamps: true }
 );
