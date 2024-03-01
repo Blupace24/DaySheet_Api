@@ -6,6 +6,7 @@ import usersRoute from "./routes/users.js";
 import daysheetRoute from "./routes/daysheet.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import paymentsRoute from "./routes/payment.js";
 
 const app = express();
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
+app.use("/api/payments", paymentsRoute);
 app.use("/api", daysheetRoute);
 
 
