@@ -75,6 +75,7 @@ const DaysheetSchema = new mongoose.Schema(
     item:{type:String},
     quantity:{type:Number},
     reason:{type:String},
+    totalprice:{type:Number}
   }],
   bagprice1:{type:String},
   bagprice2:{type:String},
@@ -94,7 +95,8 @@ const DaysheetSchema = new mongoose.Schema(
   otherinfo:{type:String},
   verified:{type:Boolean, default:false},
   isSubmitted:{type:Boolean, default:false},
-  comment:{type:String}
+  comment:{type:String},
+  submittedBy:{type:String, required:true}
   },
   { timestamps: true }
 );
