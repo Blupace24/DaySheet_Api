@@ -96,7 +96,20 @@ const DaysheetSchema = new mongoose.Schema(
   verified:{type:Boolean, default:false},
   isSubmitted:{type:Boolean, default:false},
   comment:{type:String},
-  submittedBy:{type:String, required:true}
+  submittedBy:{type:String, required:true},
+  isyestFloat:{type:Boolean, default:false},
+  ispettycash:{type:Boolean, default:false},
+  iscashsale:{type:Boolean, default:false},
+  iscard:{type:Boolean, default:false},
+  isstoresale:{type:Boolean, default:false},
+  issubtotal:{type:Boolean, default:false},
+  iscashmanag:{type:Boolean, default:false},
+  istodayfloat:{type:Boolean, default:false},
+  istotalSales:{type:Boolean, default:false},
+  isonline:{type:Boolean, default:false},
+  iswastage:{type:Boolean, default:false},
+  isgoodtogo:{type:Boolean, default:false},
+  istillcash:{type:Boolean, default:false},
   },
   { timestamps: true }
 );
