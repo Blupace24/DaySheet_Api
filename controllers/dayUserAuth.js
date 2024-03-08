@@ -6,16 +6,15 @@ import jwt from "jsonwebtoken";
 export const register = async (req, res, next) => {
   console.log(req.body);
   try {
-    const user = await Dayuser.findOne({ email: req.body.email });
-    if (user) return next(createError(404, "User already Exist"));
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(req.body.password, salt);
+    const user = await Dayuser.findOne({ pin: req.body.pin });
+    if (user) return next(createError(404, "Pin already Exist"));
+    
 
     const newUser = new Dayuser({
-      email:req.body.email,
-      password: hash,
+      pin:req.body.pin,
+      shop: req.body.shop,
       store:req.body.store,
-      persons:req.body.persons
+      person:req.body.person
     });
 
     await newUser.save();
@@ -46,17 +45,13 @@ export const login = async (req, res, next) => {
 
 export const pinVerification = async (req, res, next) => {
     try {
-      const user = await Dayuser.findOne({ store: req.body.store });
+      const user = await Dayuser.findOne({ pin: req.body.pin });
       if (!user) return next(createError(404, "User not found!"));
   
-      const { store, persons } = user._doc;
-      const isPinCorrect = persons.find(person => person.pin === req.body.pin);
-
-      if (!isPinCorrect)
-      return next(createError(400, "Wrong pin"));
+      const { store, person, pin , shop} = user._doc;
       res
       .status(200)
-      .json({ details: { store, person:isPinCorrect}}, );
+      .json({ details: { store, person,shop}}, );
     }
     catch(err){
         next(err);

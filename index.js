@@ -6,6 +6,7 @@ import usersRoute from "./routes/users.js";
 import dayuserRoute from "./routes/dayUser.js";
 import daysheetRoute from "./routes/daysheet.js";
 import inventorywalaRoute from "./routes/inventorywala.js";
+import inventorycakeRoute from "./routes/inventorycake.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import paymentsRoute from "./routes/payment.js";
@@ -36,6 +37,7 @@ app.use("/api/payments", paymentsRoute);
 app.use("/api", daysheetRoute);
 app.use("/api/dayusers", dayuserRoute);
 app.use("/wala", inventorywalaRoute);
+app.use("/cake", inventorycakeRoute);
 
 
 app.use((err, req, res, next) => {
