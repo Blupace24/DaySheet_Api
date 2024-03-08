@@ -127,7 +127,8 @@ const InventorywalaSchema = new mongoose.Schema(
     stock120:{ type: String},
     stock121:{ type: String},
     stock122:{ type: String},
-    submittedBy:{type:String, required:true}
+    submittedBy:{type:String, required:true},
+    other:{ type: String}
   },
   { timestamps: true }
 );
