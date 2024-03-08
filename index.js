@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
+import dayuserRoute from "./routes/dayUser.js";
 import daysheetRoute from "./routes/daysheet.js";
+import inventorywalaRoute from "./routes/inventorywala.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import paymentsRoute from "./routes/payment.js";
@@ -32,6 +34,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/payments", paymentsRoute);
 app.use("/api", daysheetRoute);
+app.use("/api/dayusers", dayuserRoute);
+app.use("/wala", inventorywalaRoute);
 
 
 app.use((err, req, res, next) => {
