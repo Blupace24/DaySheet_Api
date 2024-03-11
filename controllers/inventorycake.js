@@ -15,16 +15,20 @@ export const createInventorycake = async (req,res,next)=>{
       }
 }
 export const getDateAllInventorycakes = async (req,res,next)=>{
+  const Payload = req.body.store ==='All'?{dateFormat:req.body.dateFormat }:{ dateFormat:req.body.dateFormat, store:req.body.store }
   try {
-    const inventorycake = await Inventorycake.find({ dateFormat:req.body.dateFormat });
+    const inventorycake = await Inventorycake.find(Payload);
       res.json(inventorycake);
     } catch (e) {
       res.status(422).json(e);
     }
 }
-export const getDateOneInventorycake = async (req,res,next)=>{
+export const getCustomInventorycake = async (req,res,next)=>{
+  const startDate = new Date(req.body.startdate)
+  const endDate = new Date(req.body.enddate)
+  const Payload = req.body.store ==='All'?{date: { $gte: startDate, $lte: endDate }, }:{date: { $gte: startDate, $lte: endDate }, store:req.body.store }
     try {
-      const inventorycake = await Inventorycake.findOne({ dateFormat:req.body.dateFormat, store:req.body.store });
+      const inventorycake = await Inventorycake.find(Payload);
         res.json(inventorycake);
       } catch (e) {
         res.status(422).json(e);

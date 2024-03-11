@@ -15,16 +15,20 @@ export const createInventorywala = async (req,res,next)=>{
       }
 }
 export const getDateAllInventorywalas = async (req,res,next)=>{
+  const Payload = req.body.store ==='All'?{dateFormat:req.body.dateFormat }:{ dateFormat:req.body.dateFormat, store:req.body.store }
   try {
-    const inventorywala = await Inventorywala.find({ dateFormat:req.body.dateFormat });
+    const inventorywala = await Inventorywala.find({ Payload });
       res.json(inventorywala);
     } catch (e) {
       res.status(422).json(e);
     }
 }
-export const getDateOneInventorywala = async (req,res,next)=>{
+export const getCustomInventorywala = async (req,res,next)=>{
+  const startDate = new Date(req.body.startdate)
+  const endDate = new Date(req.body.enddate)
+  const Payload = req.body.store ==='All'?{date: { $gte: startDate, $lte: endDate }, }:{date: { $gte: startDate, $lte: endDate }, store:req.body.store }
     try {
-      const inventorywala = await Inventorywala.findOne({ dateFormat:req.body.dateFormat, store:req.body.store });
+      const inventorywala = await Inventorywala.find(Payload);
         res.json(inventorywala);
       } catch (e) {
         res.status(422).json(e);
