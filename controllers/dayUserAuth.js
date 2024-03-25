@@ -15,7 +15,6 @@ export const register = async (req, res, next) => {
       shop: req.body.shop,
       store:req.body.store,
       person:req.body.person,
-      persons:req.body.persons
     });
 
     await newUser.save();

@@ -89,3 +89,45 @@ export const deleteUser = async (req,res,next)=>{
     next(err);
   }
 }
+
+export const addOnlyRewards = async (req,res,next)=>{
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.body.id,
+      { 
+      $inc: { rewards: req.body.rewards},  },
+      { new: true }
+    );
+    res.status(200).json({user:updatedUser});
+  } catch (err) {
+    next(err);
+  }
+}
+export const cardPaymentRewads = async (req,res,next)=>{
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.body.id,
+      { 
+      $inc: { rewards: req.body.rewards,amount: -req.body.amount},  },
+     
+      { new: true }
+    );
+    res.status(200).json({user:updatedUser});
+  } catch (err) {
+    next(err);
+  }
+}
+export const redeemRewards = async (req,res,next)=>{
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.body.id,
+      { 
+      $inc: { rewards: -req.body.rewards},  },
+     
+      { new: true }
+    );
+    res.status(200).json({user:updatedUser});
+  } catch (err) {
+    next(err);
+  }
+}
