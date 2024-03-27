@@ -17,7 +17,7 @@ export const createInventorywala = async (req,res,next)=>{
 export const getDateAllInventorywalas = async (req,res,next)=>{
   const Payload = req.body.store ==='All'?{dateFormat:req.body.dateFormat }:{ dateFormat:req.body.dateFormat, store:req.body.store }
   try {
-    const inventorywala = await Inventorywala.find({ Payload });
+    const inventorywala = await Inventorywala.find(Payload );
       res.json(inventorywala);
     } catch (e) {
       res.status(422).json(e);

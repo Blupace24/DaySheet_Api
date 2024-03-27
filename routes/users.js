@@ -5,6 +5,9 @@ import {
   addMoney,
   addCard,
   deleteUser,
+  addOnlyRewards,
+  cardPaymentRewads,
+  redeemRewards,
 } from "../controllers/user.js";
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
 
@@ -37,5 +40,8 @@ router.get("/", getUsers);
 // Adding money
 router.put("/addmoney/:id", addMoney);
 router.put("/addcard/:id", addCard);
+router.put("/addrewardsonly", addOnlyRewards);
+router.put("/cardpaymentrewards", cardPaymentRewads);
+router.put("/redeem", redeemRewards);
 
 export default router;

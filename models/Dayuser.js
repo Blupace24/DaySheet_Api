@@ -12,12 +12,12 @@ const UserSchema = new mongoose.Schema(
     },
     person:{
       type: String,
-      required: true,
     },
     shop:{
       type: String,
       required: true,
-    }
+    },
+   
   },
   { timestamps: true }
 );

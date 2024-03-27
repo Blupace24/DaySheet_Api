@@ -1,12 +1,12 @@
 import Daysheet from "../models/Daysheet.js";
 import { createError } from "../utils/error.js";
-import moment from "moment";
+
 
 export const createDaysheet = async (req,res,next)=>{
-  const {date, ...data}= req.body;
+  const {date,...data}= req.body;
   const apiDate = new Date(date)
     try {
-      const daysheet = await Daysheet.findOne({ store: req.body.store, dateFormat:req.body.dateFormat });
+      const daysheet = await Daysheet.findOne({ store: req.body.store, dateFormat:req.body.dateFormat ,shop:req.body.shop});
     if (daysheet) return next(createError(404, "Already submitted "));
         const daysheetDoc = await Daysheet.create({ ...data, date: apiDate});
         res.json(daysheetDoc);
@@ -45,6 +45,19 @@ export const updateDaysheetVerification = async (req,res,next)=>{
      { $set: {
        verified: req.body.verified, 
        comment:req.body.comment, 
+       comment1:req.body.comment1,
+       comment2:req.body.comment2,
+       comment3:req.body.comment3,
+       comment4:req.body.comment4,
+       comment5:req.body.comment5,
+       comment6:req.body.comment6,
+       comment7:req.body.comment7,
+       comment8:req.body.comment8,
+       comment9:req.body.comment9,
+       comment10:req.body.comment10,
+       comment11:req.body.comment11,
+       comment12:req.body.comment12,
+       comment13:req.body.comment13,
   isyestFloat: req.body.isyestFloat, 
   ispettycash:req.body.ispettycash, 
   iscashsale: req.body.iscashsale,

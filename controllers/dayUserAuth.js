@@ -14,7 +14,7 @@ export const register = async (req, res, next) => {
       pin:req.body.pin,
       shop: req.body.shop,
       store:req.body.store,
-      person:req.body.person
+      person:req.body.person,
     });
 
     await newUser.save();
@@ -23,35 +23,35 @@ export const register = async (req, res, next) => {
     next(err);
   }
 };
-export const login = async (req, res, next) => {
-  try {
-    const user = await Dayuser.findOne({ email: req.body.email });
-    if (!user) return next(createError(404, "User not found!"));
+// export const login = async (req, res, next) => {
+//   try {
+//     const user = await Dayuser.findOne({ email: req.body.email });
+//     if (!user) return next(createError(404, "User not found!"));
 
-    const isPasswordCorrect = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-    if (!isPasswordCorrect)
-      return next(createError(400, "Wrong password or email!"));
-    const { _id, email, store, persons } = user._doc;
-    res
-      .status(200)
-      .json({ details: { _id, email, store, persons}}, );
-  } catch (err) {
-    next(err);
-  }
-};
+//     const isPasswordCorrect = await bcrypt.compare(
+//       req.body.password,
+//       user.password
+//     );
+//     if (!isPasswordCorrect)
+//       return next(createError(400, "Wrong password or email!"));
+//     const { _id, email, store, persons } = user._doc;
+//     res
+//       .status(200)
+//       .json({ details: { _id, email, store, persons}}, );
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 export const pinVerification = async (req, res, next) => {
     try {
       const user = await Dayuser.findOne({ pin: req.body.pin });
       if (!user) return next(createError(404, "User not found!"));
   
-      const { store, person, pin , shop} = user._doc;
+      const { store, person, pin , shop,persons} = user._doc;
       res
       .status(200)
-      .json({ details: { store, person,shop}}, );
+      .json({ details: { store, person,shop,persons}}, );
     }
     catch(err){
         next(err);
