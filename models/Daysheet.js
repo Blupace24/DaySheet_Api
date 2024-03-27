@@ -5,6 +5,7 @@ const DaysheetSchema = new mongoose.Schema(
     store:{ type: String,required:true},
     date:{type:Date,required:true},
     dateFormat:{type:String,required:true},
+    shop:{type:String,required:true},
     image:{type:String},
     n50:{type:Number, required:true,default:0},
     n20:{type:Number, required:true,default:0},

@@ -6,7 +6,7 @@ export const createDaysheet = async (req,res,next)=>{
   const {date,...data}= req.body;
   const apiDate = new Date(date)
     try {
-      const daysheet = await Daysheet.findOne({ store: req.body.store, dateFormat:req.body.dateFormat });
+      const daysheet = await Daysheet.findOne({ store: req.body.store, dateFormat:req.body.dateFormat ,shop:req.body.shop});
     if (daysheet) return next(createError(404, "Already submitted "));
         const daysheetDoc = await Daysheet.create({ ...data, date: apiDate});
         res.json(daysheetDoc);
